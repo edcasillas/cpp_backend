@@ -1,3 +1,5 @@
+#include "CalcResourceFactory.h"
+
 #include <sqlite3.h>
 #include <restbed>
 #include <iostream>
