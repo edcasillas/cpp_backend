@@ -14,3 +14,7 @@ add_executable(cpp_backend main.cpp)
 TARGET_LINK_LIBRARIES(cpp_backend
     sqlite3 restbed
 )
+
+target_include_directories(cpp_backend PUBLIC D:/dev/vcpkg/installed/x64-windows/include ${CMAKE_SOURCE_DIR}/include)
+
+set_property(TARGET cpp_backend PROPERTY CXX_STANDARD 17)
