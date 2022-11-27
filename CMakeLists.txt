@@ -9,10 +9,10 @@ LINK_DIRECTORIES(
     D:/dev/vcpkg/installed/x64-windows/lib
 )
 
-add_executable(cpp_backend main.cpp CalcResourceFactory.cpp CalcService.cpp CalcServiceSettingsFactory.cpp)
+add_executable(cpp_backend main.cpp)
 
 TARGET_LINK_LIBRARIES(cpp_backend
-    sqlite3 restbed
+    restbed
 )
 
 target_include_directories(cpp_backend PUBLIC D:/dev/vcpkg/installed/x64-windows/include ${CMAKE_SOURCE_DIR}/include)

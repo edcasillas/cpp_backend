@@ -1,23 +1,3 @@
-#include <iostream>
-#include "CalcResourceFactory.h"
-#include "CalcServiceSettingsFactory.h"
-#include "CalcService.h"
-
-using namespace std;
-
-int main(int argc, char** argv) {
-    auto resource_factory = make_shared<CalcResourceFactory>();
-    auto settings_factory = make_shared<CalcServiceSettingsFactory>();
-    CalcService service {resource_factory, settings_factory};
-
-    cout << "Service started" << endl;
-    service.start();
-
-    return 0;
-}
-
-
-/*#include <sqlite3.h>
 #include <restbed>
 #include <iostream>
 #include <string>
@@ -27,26 +7,23 @@ int main(int argc, char** argv) {
 using namespace std;
 using namespace restbed;
 
-void post_method_handler( const shared_ptr< Session > session )
-{
-    const auto request = session->get_request( );
-
-    int content_length = request->get_header( "Content-Length", 0 );
-
-    session->fetch( content_length, [ ]( const shared_ptr< Session > session, const Bytes & body )
-    {
-        fprintf( stdout, "%.*s\n", ( int ) body.size( ), body.data( ) );
-        session->close( OK, "Hello, World!", { { "Content-Length", "13" } } );
-    } );
-}
-
 string to_json(float number) { 
     ostringstream str_stream;
     str_stream << number; // push the result into the stream
     nlohmann::json jsonResult = {
-        {"result", str_stream.str()}
+        {"result", str_stream.str()},
+        {"data", "12345"}
     };
     return jsonResult.dump();
+}
+
+void post_method_handler( const shared_ptr< Session > session ){
+    const auto request = session->get_request( );
+    int content_length = request->get_header( "Content-Length", 0 );
+
+    session->fetch( content_length, [ ]( const shared_ptr< Session > session, const Bytes & body ) {
+        session->close( OK, "Hello, World!", { { "Content-Length", "13" } } );
+    } );
 }
 
 void get_method_handler(const shared_ptr<Session> session) {
@@ -79,4 +56,4 @@ int main( const int, const char** ) {
     service.start( settings );
 
     return EXIT_SUCCESS;
-}*/
+}
