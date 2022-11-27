@@ -1,4 +1,23 @@
-#include <sqlite3.h>
+#include <iostream>
+#include "CalcResourceFactory.h"
+#include "CalcServiceSettingsFactory.h"
+#include "CalcService.h"
+
+using namespace std;
+
+int main(int argc, char** argv) {
+    auto resource_factory = make_shared<CalcResourceFactory>();
+    auto settings_factory = make_shared<CalcServiceSettingsFactory>();
+    CalcService service {resource_factory, settings_factory};
+
+    cout << "Service started" << endl;
+    service.start();
+
+    return 0;
+}
+
+
+/*#include <sqlite3.h>
 #include <restbed>
 #include <iostream>
 #include <string>
@@ -36,8 +55,7 @@ void get_method_handler(const shared_ptr<Session> session) {
         {{"Content-Length", to_string(content.size())}});
 }
 
-int main( const int, const char** )
-{
+int main( const int, const char** ) {
     auto resource = make_shared< Resource >( );
     resource->set_path( "/resource" );
     resource->set_method_handler( "POST", post_method_handler );
@@ -61,4 +79,4 @@ int main( const int, const char** )
     service.start( settings );
 
     return EXIT_SUCCESS;
-}
+}*/

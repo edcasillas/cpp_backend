@@ -9,7 +9,7 @@ LINK_DIRECTORIES(
     D:/dev/vcpkg/installed/x64-windows/lib
 )
 
-add_executable(cpp_backend main.cpp)
+add_executable(cpp_backend main.cpp CalcResourceFactory.cpp CalcService.cpp CalcServiceSettingsFactory.cpp)
 
 TARGET_LINK_LIBRARIES(cpp_backend
     sqlite3 restbed
