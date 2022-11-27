@@ -1,0 +1,6 @@
+/[Bb]uild/
+*.pdb
+
+# Visual Studio cache directory
+.vs/
+.vscode/
